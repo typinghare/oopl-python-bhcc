@@ -76,14 +76,14 @@ resources = {
 
     # Mapping from word (lowercase) to action
     'word_action_dict': {
-        'up': 0,
-        'right': 1,
-        'down': 2,
-        'left': 3,
-        'look': 4,
-        'investigate': 5,
-        'enter': 6,
-        'out': 7
+        'up': Action.UP,
+        'right': Action.RIGHT,
+        'down': Action.DOWN,
+        'left': Action.LEFT,
+        'look': Action.LOOK,
+        'investigate': Action.INVESTIGATE,
+        'enter': Action.ENTER,
+        'out': Action.OUT,
     },
 
     # The prompt strings to be printed to the terminal
