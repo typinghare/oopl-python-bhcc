@@ -1,5 +1,3 @@
-import re
-from tkinter.ttk import Style
 from typing import List
 
 
@@ -108,7 +106,7 @@ resources = {
             'There is a big table in the room. It looks like a dining room.',
             'There are a lot of paintings in this room. Some of the paintings fell on the ground.',
             'This room looks like a bedroom, but there is only a bed frame and a cabinet.',
-            'This room is very luxurious. It seems to be the sleeping quarters of the owner of the castle.',
+            'This room is very luxurious. It seems to be the sleeping quarter of the owner of this castle.',
             'This room is completely empty. You feel a cool breeze at your back...',
             'There are many bookshelves and tomes in this room. Lots of documents are scattered on the floor.',
         ],
@@ -116,13 +114,13 @@ resources = {
             None,
             'Nothing here.',
             'Nothing here.',
-            'There is a rotten apple. But it has not decomposed.',
-            'There is a sparkling fork.',
-            'You found a piece of old paper behind a painting frame. It is a part of the treasure map!',
+            'There is a rotten apple on the ground. But why it has not been completely decomposed?',
+            'There is a sparkling fork on the table.',
+            'You found a piece of old paper behind a painting frame. It is part of the treasure map!',
             'Nothing here.',
             'Nothing here.',
             'Nothing here.',
-            'You found a piece of old paper. It is a part of the treasure map!',
+            'You found a piece of old paper. It is part of the treasure map!',
         ],
         Action.ENTER: [
             'You entered the Black Castle. Good luck!'
@@ -148,7 +146,8 @@ def text_based_adventure_game():
         actions = resources['actions'][position]
 
         # Print the prompt
-        print(f'\nYou are at the {name}. You can {actions_to_prompt(actions)}.')
+        print(f'\nYou are at the {name}.')
+        print(f'You can {actions_to_prompt(actions)}.')
         if treasure_map_piece_num == 2:
             print('Something is chasing you. You should leave the castle ASAP.')
 
@@ -157,24 +156,23 @@ def text_based_adventure_game():
 
         # Check if the action word is valid
         if action_word not in resources['word_action_dict']:
-            print(f'Invalid action given: {bold(action_word)}')
+            print(f'Invalid action: {bold(action_word)}')
             continue
 
         # Get the corresponding action (int)
         action = resources['word_action_dict'][action_word]
 
+        # Check if the action is valid
+        if action not in actions:
+            print(f'Invalid action: {bold(action_word)}')
+            continue
+
         # Print the text
-        if action in resources['text']:
-            text_list = resources['text'][action]
-            if len(text_list) > position and text_list[position] is not None:
-                print(text_list[position])
-        else:
-            # Go to another place
-            print('......')
+        print_text(action, position, investigated)
 
         # If the action is Action.INVESTIGATE, check if the block contain the pieces of treasure map
-        if action == Action.INVESTIGATE:
-            if not investigated[position] and position in resources['treasure_map_block']:
+        if action == Action.INVESTIGATE and not investigated[position]:
+            if position in resources['treasure_map_block']:
                 treasure_map_piece_num += 1
                 print('You put the piece of treasure map in your pocket.')
             investigated[position] = True
@@ -217,6 +215,26 @@ def actions_to_prompt(actions: List[int]) -> str:
         prompts[-1] = 'or ' + prompts[-1]
 
     return ', '.join(prompts)
+
+
+def print_text(action: int, position: int, investigated: List[bool]):
+    """ Prints text after selecting an action.
+    :param action: The action selected.
+    :param position: The current position.
+    :param investigated: The investigated list.
+    """
+    if action == Action.INVESTIGATE and investigated[position]:
+        print('You have investigated this room.')
+
+        return
+
+    if action in resources['text']:
+        text_list = resources['text'][action]
+        if len(text_list) > position and text_list[position] is not None:
+            print(text_list[position])
+    else:
+        # Go to another place
+        print('......')
 
 
 def change_position(position: int, action: int) -> int:
