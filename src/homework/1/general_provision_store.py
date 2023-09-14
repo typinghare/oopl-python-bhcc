@@ -1,5 +1,9 @@
 from typing import List
 
+# [Environment]
+# Python 3.11.4
+# macOS 13.4.1
+
 # All goods for sale in the store. I used dict to represent the goods, but it messed up their orders; It turns out that
 # using list and tuple is a nice approach in this case.
 goods: List[tuple[str, int]] = [
