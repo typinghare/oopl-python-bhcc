@@ -4,7 +4,7 @@ from typing import List
 # Python 3.11.4
 # macOS 13.4.2_1
 
-# All goods for sale in the store. I used dict to represent the goods, but it messed up their
+# All goods for sale in the store. I used a dict to represent the goods, but it messed up their
 # orders; It turns out that using list and tuple is a nice approach in this case.
 goods: List[tuple[str, int]] = [
     ("Food rations", 6),
@@ -29,9 +29,10 @@ def general_provision_store():
         print("What can I get you today?")
         print_goods()
 
+        # Prompt the user to input a choice
         choice = input("Enter 0-3 or q to end> ")
 
-        # Quits the order loop if the input is 'q'
+        # Break the order loop if the input is 'q'
         if choice.lower() == "q":
             print("\nOk, here is your receipt.")
             break
