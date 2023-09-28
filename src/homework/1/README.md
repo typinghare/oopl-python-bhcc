@@ -9,7 +9,7 @@ python3 general_provision_store.py
 ## Text Based Adventure Game
 
 ~~~bash
-python3 ./black-citadel/main.py
+python3 ./black-citadel/canvas.py
 ~~~
 
 * I updated the game on `Sep 17, 2023`, and I archived the version `1.0`
