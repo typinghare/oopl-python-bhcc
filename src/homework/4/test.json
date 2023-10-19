@@ -1,0 +1,23 @@
+{
+  "current_condition": [
+    {
+      "FeelsLikeC": "18",
+      "cloudcover": "50",
+      "weatherDesc": [
+        {
+          "value": "Partly cloudy"
+        }
+      ]
+    }
+  ],
+  "weather": [
+    {
+      "astronomy": [
+        {
+          "sunrise": "07:02 AM",
+          "sunset": "05:56 PM"
+        }
+      ]
+    }
+  ]
+}
