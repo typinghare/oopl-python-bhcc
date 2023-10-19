@@ -1,0 +1,3 @@
+Number of first class passengers: 216
+Number of second class passengers: 184
+Number of third class passengers: 491
