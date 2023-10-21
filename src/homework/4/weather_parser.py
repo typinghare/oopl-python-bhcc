@@ -14,7 +14,7 @@ class WeatherParser:
         current_condition: Dict[str, Any] = original["current_condition"][0]
         astronomy = original["weather"][0]["astronomy"][0]
         self.data = {
-            "feelsLikeF": current_condition["FeelsLikeC"],
+            "feelsLikeF": current_condition["FeelsLikeF"],
             "cloudCover": current_condition["cloudcover"],
             "weatherDescription": current_condition["weatherDesc"][0]["value"],
             "sunset": astronomy["sunset"],
